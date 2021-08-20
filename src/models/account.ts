@@ -4,9 +4,15 @@ import createModel from './createModel'
 
 const schema = createSchema(
     {
-        email: Type.string({ require: true }),
-        password: Type.string({ require: true }),
-        point: Type.number({ require: true }),
+        name:Type.string({ require: true }),
+        lastName:Type.string({ require: true }),
+        birthDay:Type.string({ require: true }),
+        id:Type.string({ require: true }),
+        address:Type.string({ require: true }),
+        paymentType:Type.string({ require: true }),
+        paymentAddress:Type.string({ require: true }),
+        username: Type.string({ require: true }),
+        passwordHash: Type.string({ require: true }),
     },
 )
 

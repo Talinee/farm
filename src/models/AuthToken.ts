@@ -4,7 +4,7 @@ import createModel from './createModel'
 const schema = createSchema(
     {
         userID: Type.string({ require: true }),
-        email: Type.string({ require: true }),
+        username: Type.string({ require: true }),
         accessToken: Type.string({ require: false }),
         expiredAccessToken: Type.date({ require: false }),
         refreshToken: Type.string({ require: false }),

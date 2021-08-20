@@ -19,6 +19,7 @@
         "@sentry/node": "^5.7.1",
         "@types/mongoose": "^5.10.1",
         "add": "^2.0.6",
+        "argon2": "^0.28.2",
         "body-parser": "^1.19.0",
         "cors": "^2.8.5",
         "crypto": "^1.0.1",

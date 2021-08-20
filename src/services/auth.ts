@@ -8,7 +8,7 @@ const shopAuth = {
     async genTokenLogin(request): Promise<{successful: boolean, accessToken, refreshToken, }> {
         const errors = new UniversalError()
         const user = request.body
-        const userData = await Account.findOne({ email: user.email })
+        const userData = await Account.findOne({ username: user.username })
         const accessExpired = config.auth.expires.accessToken
         const refreshExpired = config.auth.expires.refreshToken
         if (userData) {
@@ -34,7 +34,7 @@ const shopAuth = {
 
             const createAuthToken = new AuthToken()
             createAuthToken.userID = userData._id
-            createAuthToken.email = userData.email
+            createAuthToken.username = userData.username
             createAuthToken.accessToken = accessToken
             createAuthToken.expiredAccessToken = accessExpiredAt
             createAuthToken.refreshToken = refreshToken
@@ -44,7 +44,7 @@ const shopAuth = {
             return { successful: true, accessToken, refreshToken }
         }
         else {
-            errors.addError('not found/email', 'email')
+            errors.addError('not found/username', 'username')
             throw errors
         }
 
@@ -53,12 +53,12 @@ const shopAuth = {
         const userAuthToken = await AuthToken.findOne({ refreshToken: refreshToken })
         const errors = new UniversalError()
 
-        const userData = await Account.findOne({ email: userAuthToken.email })
+        const userData = await Account.findOne({ username: userAuthToken.username })
 
         if (userAuthToken) {
             const accessExpired = config.auth.expires.accessToken
             const accessPayload = {
-                name: userData.email,
+                name: userData.username,
                 userType: 'client',
                 token: 'access_token',
             }
