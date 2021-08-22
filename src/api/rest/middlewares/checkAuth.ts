@@ -10,11 +10,11 @@ export interface RequestCheckAuth extends ExpressRequest {
 export default async (request: RequestCheckAuth, response: Response, next: NextFunction) => {
     try {
         const token = request.headers.authorization.replace('Bearer ', '')
-        const shopToken = await AuthToken.findOne({ accessToken: token })
-        if (shopToken) {
-            const shop = await Account.findOne({ _id: shopToken.userID })
+        const Gardentoken = await AuthToken.findOne({ accessToken: token })
+        if (Gardentoken) {
+            const shop = await Account.findOne({ _id: Gardentoken.userID })
 
-            if (shop && shopToken.expiredAccessToken && shopToken.expiredAccessToken > new Date()) {
+            if (shop && Gardentoken.expiredAccessToken && Gardentoken.expiredAccessToken > new Date()) {
                 next()
             }
             else {

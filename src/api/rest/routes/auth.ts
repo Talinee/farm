@@ -9,9 +9,6 @@ router.post('/login', async (request: Request, response: Response, next: NextFun
     try {
         const errors = new UniversalError()
         const input = request.body
-        if (!input.email) {
-            errors.addError('empty/email', 'email is empty')
-        }
         if (!input.password) {
             errors.addError('empty/id', 'id is empty')
         }

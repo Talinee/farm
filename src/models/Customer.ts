@@ -1,6 +1,7 @@
 import { createSchema, ExtractDoc, Type } from 'ts-mongoose'
 import createModel from './createModel'
 
+
 const schema = createSchema(
     {
         name: Type.string({ require: true }),
@@ -16,5 +17,5 @@ const schema = createSchema(
     },
 )
 
-export const { model: Account } = createModel('Account', schema, { enableHardDelete: false })
-export type accountDoc = ExtractDoc<typeof schema>
+export const { model: Customer } = createModel('Customer', schema, { enableHardDelete: false })
+export type customerDoc = ExtractDoc<typeof schema>

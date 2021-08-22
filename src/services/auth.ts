@@ -8,7 +8,7 @@ const shopAuth = {
     async genTokenLogin(request): Promise<{successful: boolean, accessToken, refreshToken, }> {
         const errors = new UniversalError()
         const user = request.body
-        const userData = await Account.findOne({ username: user.username })
+        const userData = await Account.findOne({ email: user.email })
         const accessExpired = config.auth.expires.accessToken
         const refreshExpired = config.auth.expires.refreshToken
         if (userData) {
@@ -44,7 +44,7 @@ const shopAuth = {
             return { successful: true, accessToken, refreshToken }
         }
         else {
-            errors.addError('not found/username', 'username')
+            errors.addError('not found/email', 'email')
             throw errors
         }
 

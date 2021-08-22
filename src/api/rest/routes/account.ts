@@ -10,22 +10,6 @@ router.post('/register', async(request, response: Response, next: NextFunction) 
         const errors = new UniversalError()
         const { body } = request
 
-
-        if (!body.email) {
-            errors.addError('empty/email', ' email is empty')
-        }
-        else if (body.email && !await accountService.checkEmail(body.email)) {
-            errors.addError('condition/email', 'The email was duplicated.')
-        }
-        if (!body.password) {
-            errors.addError('empty/password', 'password is empty')
-        }
-
-        if (errors.amount > 0) {
-            throw errors
-        }
-
-
         const account = await accountService.add(request.body)
         response.json(account)
 
@@ -40,13 +24,6 @@ router.post('/editAccount', checkAuth, async(request: RequestCheckAuth, response
         const errors = new UniversalError()
         const { body } = request
         const accessToken = request.accessToken
-
-        if (!body.email) {
-            errors.addError('empty/email', ' email is empty')
-        }
-        if (!body.phoneNumber) {
-            errors.addError('empty/phoneNumber', 'Phone number is empty')
-        }
 
         if (errors.amount > 0) {
             throw errors
