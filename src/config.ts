@@ -13,7 +13,7 @@ const config = {
     database: {
         username: '',
         password: '',
-        host: 'mongodb.sme-connext',
+        host: 'mongodb.farm',
         port: 27017,
         database: 'farm',
         collectionPrefix: 'farm',
